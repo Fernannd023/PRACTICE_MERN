@@ -1,0 +1,6 @@
+# pack-refs with: peeled fully-peeled sorted 
+2d642f2802b94c17057a7a2bf36012bac2321da2 refs/heads/dev
+a7c92a098b6f7f72e50b41b310d34f09b68a1538 refs/heads/feature/REQ-001-crud-edwin
+efc62232e6b800e3086f3dee9c2e2d082111b66e refs/heads/main
+a7c92a098b6f7f72e50b41b310d34f09b68a1538 refs/pull/1/head
+2d642f2802b94c17057a7a2bf36012bac2321da2 refs/pull/2/head
