@@ -1,4 +1,3 @@
-
 import './App.css';
 import User from './components/getuser/User';
 import AddUser from './components/adduser/AddUser';
