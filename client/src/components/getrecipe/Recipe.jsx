@@ -39,7 +39,8 @@ export default function Recipe() {
                     <h3>No Data to display</h3>
                     <p>Please add new recipe</p>
                 </div>
-            ) : (<table className="table table-bordered">
+            ) : (<table className="table table-striped table-hover">
+
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -55,7 +56,11 @@ export default function Recipe() {
                             <tr>
                                 <th scope="row">{index + 1}</th>
                                 <td>{recipe.recipeName}</td>
-                                <td>{recipe.ingredients}</td>
+                                <td>
+                                  {Array.isArray(recipe.ingredients)
+                                    ? recipe.ingredients.join(", ")
+                                    : recipe.ingredients}
+                                </td>
                                 <td>{recipe.instructions}</td>
                                 <td className="actionsButtons">
                                     <Link to={`/update/${recipe._id}`} type="button" className="btn btn-info">

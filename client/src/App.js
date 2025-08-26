@@ -20,7 +20,7 @@ function App() {
     }
   ])
 
-  
+    
   return (
     <div className="App">
       
@@ -32,6 +32,7 @@ function App() {
         <RouterProvider router={route}></RouterProvider>
       </header>
     </div>
+    
   );
 }
 

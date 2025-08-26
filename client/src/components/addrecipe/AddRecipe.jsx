@@ -37,21 +37,52 @@ export default function AddRecipe() {
             <Link to="/" type="button" className="btn btn-secondary"><i className="fa-solid fa-backward"></i></Link>
             <h3>Add New Recipe</h3>
             <form onSubmit={submitForm}>
-                <div className="form-group">
-                    <label htmlFor="recipeName">Recipe Name:</label>
-                    <input onChange={inputHandler} type="text" className="form-control" id="recipeName" name="recipeName" placeholder="Enter recipe name" value={recipe.recipeName} />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="ingredients">Ingredients:</label>
-                    <input onChange={inputHandler} type="text" className="form-control" id="ingredients" name="ingredients" placeholder="Enter ingredients" value={recipe.ingredients} required />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="instructions">Instructions:</label>
-                    <input onChange={inputHandler} type="text" className="form-control" id="instructions" name="instructions" placeholder="Enter instructions" value={recipe.instructions} required />
-                </div>
-                <button type="submit" className="btn btn-primary submit">Submit</button>
-            </form>
+  <div className="form-group mb-3">
+    <label htmlFor="recipeName">Recipe Name</label>
+    <input
+      onChange={inputHandler}
+      type="text"
+      className="form-control"
+      id="recipeName"
+      name="recipeName"
+      placeholder="Enter recipe name"
+      value={recipe.recipeName}
+      required
+    />
+  </div>
 
+  <div className="form-group mb-3">
+    <label htmlFor="ingredients">Ingredients</label>
+    <input
+      onChange={inputHandler}
+      type="text"
+      className="form-control"
+      id="ingredients"
+      name="ingredients"
+      placeholder="Enter ingredients (comma separated)"
+      value={recipe.ingredients}
+      required
+    />
+  </div>
+
+  <div className="form-group mb-3">
+    <label htmlFor="instructions">Instructions</label>
+    <textarea
+      onChange={inputHandler}
+      className="form-control"
+      id="instructions"
+      name="instructions"
+      placeholder="Write step by step..."
+      value={recipe.instructions}
+      rows="4"
+      required
+    ></textarea>
+  </div>
+
+  <button type="submit" className="btn btn-primary">
+    Save Recipe
+  </button>
+</form>
         </div>
     )
 }
