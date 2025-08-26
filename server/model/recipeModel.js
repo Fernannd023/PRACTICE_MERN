@@ -1,20 +1,20 @@
 import mongoose from "mongoose"
 
-const userSchema = new mongoose.Schema(
+const recipeSchema = new mongoose.Schema(
     {
-        name: {
+        recipe: {
             type: String,
             required: true
         },
-        email: {
+        ingredients: {
             type: String,
             required: true
         },
-        address:{
+        instructions:{
             type: String,
             required: true
         }
     }
 )
 
-export default mongoose.model("Users",userSchema)
+export default mongoose.model("Recipes",recipeSchema)

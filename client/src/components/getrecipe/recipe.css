@@ -1,4 +1,4 @@
-.userTable {
+.recipeTable {
     width: 60%;
     margin: 50px auto;
     background-color: #eef0f6;
@@ -7,17 +7,17 @@
     box-shadow: 1px 1px 8px rgb(0, 0, 0, 0.065);
 }
 
-.userTable table{
+.recipeTable table{
     width: 100%;
     margin-top: 30px;
 }
 
-.userTable table thead th {
+.recipeTable table thead th {
     background-color: #094d74;
     color: white;
 }
 
-.userTable table tbody td {
+.recipeTable table tbody td {
     padding: 10px;
     text-align: center;
     vertical-align: middle;

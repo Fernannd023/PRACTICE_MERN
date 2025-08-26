@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react'
-import './user.css'
+import './recipe.css'
 import axios from "axios"
 import { Link } from 'react-router-dom'
 import toast from 'react-hot-toast';
 
-export default function User() {
-    const [users, setUsers] = useState([])
+
+export default function Recipe() {
+    const [recipes, setRecipes] = useState([])
     useEffect(() => {
         const fetchData = async (params) => {
             try {
-                const response = await axios.get("http://localhost:8000/api/users");
-                setUsers(response.data);
+                const response = await axios.get("http://localhost:8000/api/recipes");
+                setRecipes(response.data);
             } catch (error) {
                 console.log("Error while fetching data ", error);
             }
@@ -19,10 +20,10 @@ export default function User() {
     }, []);
 
 
-    const deleteUser = async (userId) => {
-        await axios.delete(`http://localhost:8000/api/delete/user/${userId}`)
+    const deleteRecipe = async (recipeId) => {
+        await axios.delete(`http://localhost:8000/api/delete/recipe/${recipeId}`)
             .then((response) => {
-                setUsers((prevUser) => prevUser.filter((user) => user._id !== userId));
+                setRecipes((prevRecipes) => prevRecipes.filter((recipe) => recipe._id !== recipeId));
                 toast.success(response.data.message, { position: "top-right" });
             })
             .catch((error) => {
@@ -30,38 +31,38 @@ export default function User() {
             })
     };
 
-    return (
-        <div className="userTable">
-            <Link to="/add" type="button" className="btn btn-primary">Add user <i className="fa-solid fa-user-plus"></i></Link>
-            {users.length === 0 ? (
+     return (
+        <div className="recipeTable">
+            <Link to="/add" type="button" className="btn btn-primary">Add Recipe <i className="fa-solid fa-recipe-plus"></i></Link>
+            {recipes.length === 0 ? (
                 <div className="noData">
                     <h3>No Data to display</h3>
-                    <p>Please add new user</p>
+                    <p>Please add new recipe</p>
                 </div>
             ) : (<table className="table table-bordered">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Address</th>
+                        <th scope="col">Recipe Name</th>
+                        <th scope="col">Ingredients</th>
+                        <th scope="col">Instructions</th>
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {users.map((user, index) => {
+                    {recipes.map((recipe, index) => {
                         return (
                             <tr>
                                 <th scope="row">{index + 1}</th>
-                                <td>{user.name}</td>
-                                <td>{user.email}</td>
-                                <td>{user.address}</td>
+                                <td>{recipe.title}</td>
+                                <td>{recipe.ingredients}</td>
+                                <td>{recipe.instructions}</td>
                                 <td className="actionsButtons">
-                                    <Link to={`/update/${user._id}`} type="button" className="btn btn-info">
+                                    <Link to={`/update/${recipe._id}`} type="button" className="btn btn-info">
                                         <i className="fa-solid fa-pen-to-square"></i>
                                     </Link>
                                     <button
-                                        onClick={() => deleteUser(user._id)}
+                                        onClick={() => deleteRecipe(recipe._id)}
                                         type="button" className="btn btn-danger">
                                         <i className="fa-solid fa-trash"></i>
                                     </button>
@@ -74,3 +75,5 @@ export default function User() {
         </div>
     )
 }
+
+

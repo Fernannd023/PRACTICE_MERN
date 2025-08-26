@@ -1,13 +1,13 @@
-.addUser {
+.addRecipe {
     width: 60%;
     margin: 50px auto;
-    background-color: #eef0f6;
+    background-color: #97aae2;
     padding: 50px;
     border-radius: 10px;
-    box-shadow: 1px 1px 8px rgb(0, 0, 0, 0.065);
+    box-shadow: 1px 1px 8px rgba(255, 255, 255, 0.065);
 }
 
-.addUser h3 {
+.addRecipe h3 {
     text-align: left;
     font-family: Arial Black;
     font-weight: bold;
@@ -18,7 +18,7 @@
     text-align: center;
 }
 
-.addUser .submit{
+.addRecipe .submit{
     margin: 5px;
     width: -webkit-fill-available;
 }

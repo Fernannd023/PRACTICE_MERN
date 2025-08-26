@@ -1,31 +1,41 @@
 import './App.css';
-import User from './components/getuser/User';
-import AddUser from './components/adduser/AddUser';
-import UpdateUser from './components/updateuser/UpdateUser';
+import Recipe from './components/getrecipe/Recipe';
+import AddRecipe from './components/addrecipe/AddRecipe';
+import UpdateRecipe from './components/updaterecipe/UpdateRecipe';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 
 function App() {
   const route = createBrowserRouter([
     {
       path: "/",
-      element: <User />
+      element: <Recipe/>
     },
     {
       path: "/add",
-      element: <AddUser />
+      element: <AddRecipe/>
     },
     {
       path: "/update/:id",
-      element: <UpdateUser />
+      element: <UpdateRecipe/>
     }
   ])
+
+  
   return (
     <div className="App">
+      
       <header className="App-header">
+        <h1 style={{ textAlign: "center", margin: "20px 0" }}>
+          Recetas de Cocina 🍳
+        </h1>
+
         <RouterProvider router={route}></RouterProvider>
       </header>
     </div>
   );
 }
 
+
+
 export default App;
+
