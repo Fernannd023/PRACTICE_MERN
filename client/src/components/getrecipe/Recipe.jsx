@@ -54,7 +54,7 @@ export default function Recipe() {
                         return (
                             <tr>
                                 <th scope="row">{index + 1}</th>
-                                <td>{recipe.title}</td>
+                                <td>{recipe.recipeName}</td>
                                 <td>{recipe.ingredients}</td>
                                 <td>{recipe.instructions}</td>
                                 <td className="actionsButtons">

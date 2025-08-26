@@ -6,7 +6,7 @@ import toast from 'react-hot-toast';
 
 export default function AddRecipe() {
     const recipes = {
-        title: "",
+        recipeName: "",
         ingredients: "",
         instructions: ""
     };
@@ -22,14 +22,15 @@ export default function AddRecipe() {
 
     const submitForm = async (e) => {
         e.preventDefault();
-        await axios.post("http://localhost:8000/api/recipe", recipe).then((response) => {
-            toast.success(response.data.message,{position:"top-right"});
-            navigate("/");
-        })
-            .catch((error) => {
-                console.log(error);
-            })
+    try {
+      const response = await axios.post("http://localhost:8000/api/recipe", recipe);
+      toast.success(response.data.message, { position: "top-right" });
+      navigate("/"); // vuelve al listado de recetas
+    } catch (error) {
+      console.log(error);
+      toast.error("Error creando la receta", { position: "top-right" });
     }
+  };
 
     return (
         <div className="addRecipe">
@@ -37,16 +38,16 @@ export default function AddRecipe() {
             <h3>Add New Recipe</h3>
             <form onSubmit={submitForm}>
                 <div className="form-group">
-                    <label htmlFor="titleRecipe">Title:</label>
-                    <input onChange={inputHandler} type="text" className="form-control" id="titleRecipe" name="title" placeholder="Enter title" />
+                    <label htmlFor="recipeName">Recipe Name:</label>
+                    <input onChange={inputHandler} type="text" className="form-control" id="recipeName" name="recipeName" placeholder="Enter recipe name" value={recipe.recipeName} />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="ingredientsRecipe">Ingredients:</label>
-                    <input onChange={inputHandler} type="text" className="form-control" id="ingredientsRecipe" name="ingredients" placeholder="Enter ingredients" />
+                    <label htmlFor="ingredients">Ingredients:</label>
+                    <input onChange={inputHandler} type="text" className="form-control" id="ingredients" name="ingredients" placeholder="Enter ingredients" value={recipe.ingredients} required />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="instructionsRecipe">Instructions:</label>
-                    <input onChange={inputHandler} type="text" className="form-control" id="instructionsRecipe" name="instructions" placeholder="Enter instructions" />
+                    <label htmlFor="instructions">Instructions:</label>
+                    <input onChange={inputHandler} type="text" className="form-control" id="instructions" name="instructions" placeholder="Enter instructions" value={recipe.instructions} required />
                 </div>
                 <button type="submit" className="btn btn-primary submit">Submit</button>
             </form>

@@ -6,7 +6,7 @@ import './updaterecipe.css'
 
 export default function UpdateRecipe() {
   const recipes = {
-    title: "",
+    recipeName: "",
     ingredients: "",
     instructions: ""
   };
@@ -49,8 +49,8 @@ export default function UpdateRecipe() {
       <h3>Update Recipe</h3>
       <form onSubmit={submitForm}>
         <div className="form-group">
-          <label htmlFor="titleRecipe">Title:</label>
-          <input value={recipe.title} onChange={inputHandler} type="text" className="form-control" id="titleRecipe" name="title" placeholder="Enter title" />
+          <label htmlFor="recipeName">Recipe Name:</label>
+          <input value={recipe.recipeName} onChange={inputHandler} type="text" className="form-control" id="recipeName" name="recipeName" placeholder="Enter recipe name" />
         </div>
         <div className="form-group">
           <label htmlFor="ingredientsRecipe">Ingredients:</label>

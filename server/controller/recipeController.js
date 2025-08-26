@@ -3,17 +3,10 @@ import Recipe from "../model/recipeModel.js"
 export const create = async (req, res) => {
     try {
         const newRecipe = new Recipe(req.body);
-        const { ingredients } = newRecipe;
-        const recipeExist = await Recipe.findOne({ ingredients });
-        if (recipeExist) {
-            return res.status(400).json({
-                message: "Recipe already exist"
-            })
-        }
 
-        const savedData = await newRecipe.save();
+        const savedRecipe = await newRecipe.save();
         //res.status(200).json(savedData);
-        res.status(200).json({message:"Recipe created successfully."});
+        res.status(200).json({message:"Recipe created successfully.", data: savedRecipe});
     } catch (error) {
         res.status(500).json({ errorMessage: error.message })
     }
