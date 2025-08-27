@@ -19,6 +19,9 @@ export default function Recipe() {
         fetchData();
     }, []);
 
+    const [selectedRecipe, setSelectedRecipe] = useState(null);
+    const placeholder = "https://via.placeholder.com/400x250?text=No+Image";
+
 
     const deleteRecipe = async (recipeId) => {
         await axios.delete(`http://localhost:8000/api/delete/recipe/${recipeId}`)
@@ -62,21 +65,63 @@ export default function Recipe() {
                                     : recipe.ingredients}
                                 </td>
                                 <td>{recipe.instructions}</td>
+                                
                                 <td className="actionsButtons">
                                     <Link to={`/update/${recipe._id}`} type="button" className="btn btn-info">
                                         <i className="fa-solid fa-pen-to-square"></i>
                                     </Link>
-                                    <button
+                                                                        <button
                                         onClick={() => deleteRecipe(recipe._id)}
                                         type="button" className="btn btn-danger">
                                         <i className="fa-solid fa-trash"></i>
                                     </button>
+                                    <button 
+                                    className="view-btn"
+                                    onClick={() => setSelectedRecipe(recipe)}>
+                                      View Information
+                                    </button>
                                 </td>
+                                
                             </tr>
                         )
                     })}
                 </tbody>
             </table>)}
+
+            {selectedRecipe && (
+             <div
+               className="modal-overlay"
+               onClick={() => setSelectedRecipe(null)}
+             >
+              <div
+               className="modal-content"
+               onClick={(e) => e.stopPropagation()}
+              >
+               <h3>{selectedRecipe.recipeName}</h3>
+
+               <img
+                 src={
+                   selectedRecipe.image && selectedRecipe.image.length > 0
+                     ? selectedRecipe.image
+                     : placeholder
+                 }
+                 alt={selectedRecipe.recipeName}
+                 onError={(e) => { e.target.src = placeholder; }}
+              />
+
+              <p><strong>Ingredients:</strong> {selectedRecipe.ingredients}</p>
+              <p><strong>Instructions:</strong> {selectedRecipe.instructions}</p>
+
+              <button
+                onClick={() => setSelectedRecipe(null)}
+                className="close-btn"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        )}
+ 
         </div>
     )
 }
